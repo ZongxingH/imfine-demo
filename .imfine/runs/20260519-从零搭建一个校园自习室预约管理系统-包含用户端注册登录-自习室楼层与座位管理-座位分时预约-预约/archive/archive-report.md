@@ -8,6 +8,8 @@ The run delivered a lightweight front/back separated campus study room reservati
 
 ## Evidence
 
+- Commit: `bfc6d26`
+- Push: `origin/main` updated successfully.
 - Planning: `planning/task-graph.json`, `planning/execution-plan.md`, `planning/ownership.json`, `planning/commit-plan.md`.
 - Product and architecture: `product/product-plan.md`, `architecture/architecture-plan.md`.
 - Implementation: `backend/`, `frontend/`, `tests/test_api.py`, `README.md`.

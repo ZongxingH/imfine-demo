@@ -6,6 +6,13 @@
   "execution_mode": "true_harness",
   "harness_classification": "true_harness",
   "status": "completed",
+  "commit": {
+    "hash": "bfc6d26",
+    "message": "Build campus study room reservation system",
+    "pushed": true,
+    "remote": "origin",
+    "branch": "main"
+  },
   "requirement_summary": "Build a front/back separated campus study room reservation management system with REST backend, user mini-program-style frontend, admin frontend, complete SQLite schema, API unit tests, validation, pagination, timeout release, report review, and utilization reports.",
   "assumptions": [
     "The repository had no implementation files, so this run established the initial stack.",

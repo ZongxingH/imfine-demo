@@ -1,6 +1,6 @@
 # Committer Report
 
-Status: ready to commit.
+Status: committed and pushed.
 
 ## Included Work
 
@@ -17,6 +17,8 @@ Status: ready to commit.
 - `node --check frontend/admin/admin.js`: passed.
 - `python -m py_compile backend/api.py backend/services.py backend/database.py tests/test_api.py`: passed.
 
-## Commit Plan
+## Commit Result
 
-Commit message: `Build campus study room reservation system`.
+- Commit: `bfc6d26`
+- Commit message: `Build campus study room reservation system`
+- Push: `git push origin main` succeeded.
