@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "run_id": "20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约",
+  "status": "waiting_for_agent_output",
+  "execution_mode": "true_harness",
+  "project_kind": "existing_project",
+  "source": {
+    "type": "text",
+    "value": "从零搭建一个校园自习室预约管理系统。包含用户端注册登录、自习室楼层与座位管理、座位分时预约、预约超时自动释放、违规占座举报、管理员后台审核举报、座位使用率统计报表；整体采用前后端分离架构，后端提供完整REST接口，前端做用户端小程序页面和管理后台页面，数据库设计完整实体与关联表，全部接口编写单元测试，前端页面完成基础布局、表单校验、列表分页，整体遵循分层架构，不引入多余第三方重型中间件。"
+  },
+  "created_at": "2026-05-19T02:48:18.305Z",
+  "infrastructure_checked_at": "2026-05-19T02:48:18.305Z",
+  "updated_at": "2026-05-19T02:48:18.307Z",
+  "project_analyzed_at": "2026-05-19T02:48:18.305Z",
+  "requirement_analyzed_at": "2026-05-19T02:48:18.306Z",
+  "designed_at": "2026-05-19T02:48:18.306Z",
+  "waiting_for_agent_output_at": "2026-05-19T02:48:18.307Z",
+  "waiting_for_agent_output_reason": "existing project requires discovery and Task Planner model outputs before runtime planning"
+}

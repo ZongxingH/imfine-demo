@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Reservation Admin</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div class="brand">
+        <h1>Reservation Admin</h1>
+        <p>Operations console</p>
+      </div>
+      <nav class="nav" aria-label="Admin sections">
+        <button type="button" class="nav-link active" data-view="resources">Resources</button>
+        <button type="button" class="nav-link" data-view="reports">Reports</button>
+        <button type="button" class="nav-link" data-view="stats">Utilization</button>
+      </nav>
+      <section class="api-box">
+        <label for="apiBase">API base URL</label>
+        <input id="apiBase" type="url" placeholder="http://localhost:8000/api">
+        <label for="adminToken">Admin token</label>
+        <input id="adminToken" type="password" placeholder="Bearer token">
+        <button type="button" id="saveSettings">Save settings</button>
+      </section>
+    </aside>
+
+    <main class="content">
+      <header class="page-head">
+        <div>
+          <h2 id="pageTitle">Resource Management</h2>
+          <p>Manage floors, rooms, seats, reports, and utilization.</p>
+        </div>
+        <button type="button" id="refreshCurrent" class="secondary">Refresh</button>
+      </header>
+
+      <section class="view active" id="resources">
+        <div class="resource-grid">
+          <form id="floorForm" class="panel form-panel">
+            <h3>Floor</h3>
+            <label>Name
+              <input name="name" type="text" placeholder="First Floor" required>
+            </label>
+            <label>Number
+              <input name="number" type="number" min="0" required>
+            </label>
+            <button type="submit">Add floor</button>
+          </form>
+
+          <form id="roomForm" class="panel form-panel">
+            <h3>Room</h3>
+            <label>Floor ID
+              <input name="floorId" type="text" required>
+            </label>
+            <label>Name
+              <input name="name" type="text" placeholder="Reading Room A" required>
+            </label>
+            <label>Capacity
+              <input name="capacity" type="number" min="1" required>
+            </label>
+            <button type="submit">Add room</button>
+          </form>
+
+          <form id="seatForm" class="panel form-panel">
+            <h3>Seat</h3>
+            <label>Room ID
+              <input name="roomId" type="text" required>
+            </label>
+            <label>Seat code
+              <input name="code" type="text" placeholder="A-01" required>
+            </label>
+            <label>Status
+              <select name="status" required>
+                <option value="available">Available</option>
+                <option value="disabled">Disabled</option>
+              </select>
+            </label>
+            <button type="submit">Add seat</button>
+          </form>
+        </div>
+
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Seat Inventory</h3>
+            <div class="inline-filter">
+              <input id="seatSearch" type="search" placeholder="Search seat or room">
+              <button type="button" id="searchSeats" class="secondary">Search</button>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Seat</th>
+                  <th>Room</th>
+                  <th>Floor</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="seatTable"></tbody>
+            </table>
+          </div>
+          <div class="pagination" data-pager="seats">
+            <button type="button" data-page-action="prev">Prev</button>
+            <span id="seatPageInfo">Page 1</span>
+            <button type="button" data-page-action="next">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="reports">
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Violation Reports</h3>
+            <select id="reportStatusFilter" aria-label="Report status">
+              <option value="">All statuses</option>
+              <option value="pending">Pending</option>
+              <option value="approved">Approved</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Seat</th>
+                  <th>Type</th>
+                  <th>Description</th>
+                  <th>Status</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody id="reportTable"></tbody>
+            </table>
+          </div>
+          <div class="pagination" data-pager="reports">
+            <button type="button" data-page-action="prev">Prev</button>
+            <span id="reportPageInfo">Page 1</span>
+            <button type="button" data-page-action="next">Next</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="view" id="stats">
+        <div class="stats-grid">
+          <div class="metric">
+            <span>Total seats</span>
+            <strong id="totalSeats">0</strong>
+          </div>
+          <div class="metric">
+            <span>Reserved now</span>
+            <strong id="reservedSeats">0</strong>
+          </div>
+          <div class="metric">
+            <span>Utilization</span>
+            <strong id="utilizationRate">0%</strong>
+          </div>
+        </div>
+        <div class="panel">
+          <div class="panel-head">
+            <h3>Room Utilization</h3>
+          </div>
+          <div class="bar-list" id="roomStats"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="./admin.js"></script>
+</body>
+</html>

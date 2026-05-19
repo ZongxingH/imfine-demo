@@ -1,0 +1,152 @@
+{
+  "runId": "20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约",
+  "planner": "task-planner",
+  "assumptions": [
+    "No project files were detected outside runtime directories; plan treats implementation as an empty-repo build.",
+    "Implementation must stay lightweight: Python stdlib backend using http.server, sqlite3, unittest; static HTML/CSS/JS frontend.",
+    "No heavy third-party middleware or package-manager dependency is required."
+  ],
+  "parallelGroups": {
+    "P0-foundation": ["T01"],
+    "P1-parallel-build": ["T02", "T05", "T06"],
+    "P2-backend-api": ["T03"],
+    "P3-backend-tests": ["T04"],
+    "P4-integration": ["T07"],
+    "P5-qa-gate": ["T08"],
+    "P6-review-gate": ["T09"],
+    "P7-docs-gate": ["T10"],
+    "P8-knowledge-gate": ["T11"],
+    "P9-commit-gate": ["T12"],
+    "P10-archive-gate": ["T13"]
+  },
+  "tasks": [
+    {
+      "id": "T01",
+      "role": "architect",
+      "title": "Create lightweight project skeleton and API contract",
+      "dependsOn": [],
+      "parallelGroup": "P0-foundation",
+      "outputs": ["backend/", "frontend/", "docs/api.md", "README.md"],
+      "acceptance": ["Backend/frontend directories exist", "REST contract covers auth, rooms, floors, seats, reservations, reports, admin review"]
+    },
+    {
+      "id": "T02",
+      "role": "dev-backend",
+      "title": "Implement sqlite schema and data access layer",
+      "dependsOn": ["T01"],
+      "parallelGroup": "P1-parallel-build",
+      "outputs": ["backend/db.py", "backend/schema.sql"],
+      "acceptance": ["Entities and relationships cover users, rooms, floors, seats, reservations, reports, admin actions, usage stats"]
+    },
+    {
+      "id": "T03",
+      "role": "dev-backend",
+      "title": "Implement REST API with http.server",
+      "dependsOn": ["T02"],
+      "parallelGroup": "P2-backend-api",
+      "outputs": ["backend/server.py", "backend/services.py"],
+      "acceptance": ["Registration/login, seat management, time-slot reservation, timeout release, report review, and stats endpoints work"]
+    },
+    {
+      "id": "T04",
+      "role": "dev-backend",
+      "title": "Add backend unittest coverage",
+      "dependsOn": ["T03"],
+      "parallelGroup": "P3-backend-tests",
+      "outputs": ["backend/tests/"],
+      "acceptance": ["All REST endpoints have unittest coverage", "python3 -m unittest discover -s backend/tests passes"]
+    },
+    {
+      "id": "T05",
+      "role": "dev-frontend-user",
+      "title": "Build user mini-program-style static pages",
+      "dependsOn": ["T01"],
+      "parallelGroup": "P1-parallel-build",
+      "outputs": ["frontend/user/"],
+      "acceptance": ["Registration/login, room/floor/seat browsing, reservation, active booking, and violation report pages exist with form validation"]
+    },
+    {
+      "id": "T06",
+      "role": "dev-frontend-admin",
+      "title": "Build admin static pages",
+      "dependsOn": ["T01"],
+      "parallelGroup": "P1-parallel-build",
+      "outputs": ["frontend/admin/"],
+      "acceptance": ["Room/floor/seat management, report review, usage statistics, and paginated lists exist with form validation"]
+    },
+    {
+      "id": "T07",
+      "role": "dev-integration",
+      "title": "Wire frontend pages to REST API and document local run flow",
+      "dependsOn": ["T03", "T05", "T06"],
+      "parallelGroup": "P4-integration",
+      "outputs": ["frontend/shared/api.js", "README.md"],
+      "acceptance": ["User and admin pages call backend endpoints", "Local startup and smoke flow are documented"]
+    },
+    {
+      "id": "T08",
+      "role": "qa",
+      "title": "QA gate",
+      "dependsOn": ["T04", "T07"],
+      "parallelGroup": "P5-qa-gate",
+      "gate": true,
+      "outputs": [".imfine/runs/20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约/qa/"],
+      "acceptance": ["Unit tests pass", "Manual smoke covers auth, reservation, timeout release, report review, and stats"]
+    },
+    {
+      "id": "T09",
+      "role": "reviewer",
+      "title": "Reviewer gate",
+      "dependsOn": ["T08"],
+      "parallelGroup": "P6-review-gate",
+      "gate": true,
+      "outputs": [".imfine/runs/20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约/review/"],
+      "acceptance": ["No blocking correctness, security, data integrity, or missing-test findings remain"]
+    },
+    {
+      "id": "T10",
+      "role": "technical-writer",
+      "title": "Technical Writer gate",
+      "dependsOn": ["T09"],
+      "parallelGroup": "P7-docs-gate",
+      "gate": true,
+      "outputs": ["README.md", "docs/api.md"],
+      "acceptance": ["Setup, run, API, data model, and manual smoke instructions are current"]
+    },
+    {
+      "id": "T11",
+      "role": "project-knowledge-updater",
+      "title": "Project Knowledge Updater gate",
+      "dependsOn": ["T10"],
+      "parallelGroup": "P8-knowledge-gate",
+      "gate": true,
+      "outputs": [".imfine/project/"],
+      "acceptance": ["Project knowledge reflects source layout, commands, architecture, and constraints"]
+    },
+    {
+      "id": "T12",
+      "role": "committer",
+      "title": "Committer gate",
+      "dependsOn": ["T11"],
+      "parallelGroup": "P9-commit-gate",
+      "gate": true,
+      "outputs": ["git commit"],
+      "acceptance": ["Only intended files are staged", "Commit message summarizes the campus study room reservation system implementation"]
+    },
+    {
+      "id": "T13",
+      "role": "archive",
+      "title": "Archive gate",
+      "dependsOn": ["T12"],
+      "parallelGroup": "P10-archive-gate",
+      "gate": true,
+      "outputs": [".imfine/runs/20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约/archive/"],
+      "acceptance": ["Run evidence includes plan, implementation summary, QA, review, commit, docs, and final status"]
+    }
+  ],
+  "reworkPolicy": {
+    "onQaFailure": "Return to the owning dev task, then rerun T08.",
+    "onReviewBlocker": "Return to the owning dev task, then rerun T08 and T09.",
+    "onDocsGap": "Return to T10 before T11."
+  }
+}

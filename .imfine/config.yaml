@@ -1,0 +1,10 @@
+project:
+  name: unknown
+runtime:
+  default_remote: origin
+  run_branch_prefix: imfine
+  auto_install_dependencies: true
+  auto_push_after_doctor_pass: true
+targets:
+  codex: true
+  claude: true

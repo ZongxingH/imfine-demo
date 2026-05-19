@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Seat Reservation Miniapp</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <h1>Seat Reservation</h1>
+        <p>Student self-service miniapp</p>
+      </div>
+      <div class="status-pill" id="authStatus">Signed out</div>
+    </header>
+
+    <section class="settings-panel" aria-label="API settings">
+      <label for="apiBase">API base URL</label>
+      <div class="inline-control">
+        <input id="apiBase" type="url" placeholder="http://localhost:8000/api">
+        <button type="button" id="saveApiBase">Save</button>
+      </div>
+    </section>
+
+    <nav class="tabbar" aria-label="Main sections">
+      <button class="tab active" type="button" data-tab="auth">Login</button>
+      <button class="tab" type="button" data-tab="browse">Seats</button>
+      <button class="tab" type="button" data-tab="reserve">Reserve</button>
+      <button class="tab" type="button" data-tab="active">Active</button>
+      <button class="tab" type="button" data-tab="report">Report</button>
+    </nav>
+
+    <main>
+      <section class="view active" id="auth">
+        <div class="section-head">
+          <h2>Account</h2>
+          <button type="button" id="logoutBtn" class="secondary">Logout</button>
+        </div>
+        <div class="segmented">
+          <button type="button" class="segment active" data-auth-mode="login">Login</button>
+          <button type="button" class="segment" data-auth-mode="register">Register</button>
+        </div>
+        <form id="loginForm" class="form-grid">
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>Password
+            <input name="password" type="password" autocomplete="current-password" minlength="6" required>
+          </label>
+          <button type="submit">Login</button>
+        </form>
+        <form id="registerForm" class="form-grid hidden">
+          <label>Name
+            <input name="name" type="text" maxlength="40" required>
+          </label>
+          <label>Email
+            <input name="email" type="email" autocomplete="email" required>
+          </label>
+          <label>Password
+            <input name="password" type="password" autocomplete="new-password" minlength="6" required>
+          </label>
+          <button type="submit">Create account</button>
+        </form>
+      </section>
+
+      <section class="view" id="browse">
+        <div class="section-head">
+          <h2>Floors, Rooms, Seats</h2>
+          <button type="button" id="refreshSeats" class="secondary">Refresh</button>
+        </div>
+        <div class="filters">
+          <label>Floor
+            <select id="floorFilter"></select>
+          </label>
+          <label>Room
+            <select id="roomFilter"></select>
+          </label>
+          <label>Status
+            <select id="seatStatusFilter">
+              <option value="">All</option>
+              <option value="available">Available</option>
+              <option value="reserved">Reserved</option>
+              <option value="disabled">Disabled</option>
+            </select>
+          </label>
+        </div>
+        <div class="list" id="seatList"></div>
+        <div class="pagination" data-pager="seats">
+          <button type="button" data-page-action="prev">Prev</button>
+          <span id="seatPageInfo">Page 1</span>
+          <button type="button" data-page-action="next">Next</button>
+        </div>
+      </section>
+
+      <section class="view" id="reserve">
+        <div class="section-head">
+          <h2>Reservation Form</h2>
+        </div>
+        <form id="reservationForm" class="form-grid">
+          <label>Seat ID
+            <input name="seatId" type="text" placeholder="seat_101" required>
+          </label>
+          <label>Start time
+            <input name="startTime" type="datetime-local" required>
+          </label>
+          <label>End time
+            <input name="endTime" type="datetime-local" required>
+          </label>
+          <label>Purpose
+            <textarea name="purpose" rows="3" maxlength="160" required></textarea>
+          </label>
+          <button type="submit">Submit reservation</button>
+        </form>
+      </section>
+
+      <section class="view" id="active">
+        <div class="section-head">
+          <h2>Active Reservations</h2>
+          <button type="button" id="refreshReservations" class="secondary">Refresh</button>
+        </div>
+        <div class="list" id="reservationList"></div>
+        <div class="pagination" data-pager="reservations">
+          <button type="button" data-page-action="prev">Prev</button>
+          <span id="reservationPageInfo">Page 1</span>
+          <button type="button" data-page-action="next">Next</button>
+        </div>
+      </section>
+
+      <section class="view" id="report">
+        <div class="section-head">
+          <h2>Violation Report</h2>
+        </div>
+        <form id="reportForm" class="form-grid">
+          <label>Seat ID
+            <input name="seatId" type="text" required>
+          </label>
+          <label>Violation type
+            <select name="type" required>
+              <option value="">Select one</option>
+              <option value="no_show">No show</option>
+              <option value="occupying_seat">Occupying seat</option>
+              <option value="noise">Noise</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+          <label>Description
+            <textarea name="description" rows="4" maxlength="300" required></textarea>
+          </label>
+          <button type="submit">Submit report</button>
+        </form>
+      </section>
+    </main>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  </div>
+
+  <script src="./app.js"></script>
+</body>
+</html>

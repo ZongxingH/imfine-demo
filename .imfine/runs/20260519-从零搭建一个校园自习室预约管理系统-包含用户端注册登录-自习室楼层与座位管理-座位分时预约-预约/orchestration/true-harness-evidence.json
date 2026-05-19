@@ -1,0 +1,59 @@
+{
+  "schema_version": 1,
+  "run_id": "20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约",
+  "generated_at": "2026-05-19T02:48:18.310Z",
+  "target_goal": "依赖大模型能力，通过多角色多 agent + skill 并行执行，实现 harness 工程",
+  "harness_classification": "true_harness",
+  "true_harness_passed": false,
+  "orchestrator_declaration": {
+    "passed": false,
+    "decision_source": "missing",
+    "execution_mode": "missing",
+    "harness_classification": "missing",
+    "session_file": null
+  },
+  "run": {
+    "status": "waiting_for_agent_output",
+    "execution_mode": "true_harness",
+    "project_kind": "existing_project"
+  },
+  "participating_roles": [],
+  "provider_capability": {
+    "provider": "unknown",
+    "subagent_supported": "unknown",
+    "entry_installed": "unknown",
+    "blocked": true
+  },
+  "provider_execution_receipts": {
+    "receipt_count": 0,
+    "all_contracts_have_provider_receipt": false,
+    "missing_provider_receipt_contracts": [],
+    "receipts": []
+  },
+  "skill_evidence_contracts": {
+    "passed": true,
+    "checks": []
+  },
+  "task_count": 0,
+  "parallel_execution": {
+    "dispatch_contract_count": 0,
+    "executed_parallel_groups": [],
+    "blocked_parallel_groups": [],
+    "wave_count": 0,
+    "all_contracts_have_completed_wave": false,
+    "missing_completed_wave_contracts": [],
+    "waves": []
+  },
+  "handoff_validation": {
+    "passed": false,
+    "required_agent_count": 0,
+    "valid_agent_count": 0,
+    "invalid": []
+  },
+  "handoff_evidence_chain": [],
+  "fix_loop_usage": {
+    "fix_tasks_present": false,
+    "replan_used": false,
+    "design_rework_used": false
+  }
+}
