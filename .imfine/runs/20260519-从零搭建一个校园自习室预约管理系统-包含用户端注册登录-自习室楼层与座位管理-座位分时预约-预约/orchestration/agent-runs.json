@@ -1,5 +1,54 @@
 {
   "schema_version": 1,
   "run_id": "20260519-从零搭建一个校园自习室预约管理系统-包含用户端注册登录-自习室楼层与座位管理-座位分时预约-预约",
-  "agents": []
+  "agents": [
+    {
+      "id": "019e3e23-0dfa-77f1-8bca-3f5e78c4dbeb",
+      "role": "Task Planner",
+      "status": "completed",
+      "output": "planning/task-graph.json"
+    },
+    {
+      "id": "019e3e23-39a8-7e81-9e91-e5e2b66e47c0",
+      "role": "Product Planner",
+      "status": "completed",
+      "output": "product/product-plan.md"
+    },
+    {
+      "id": "019e3e23-575a-77b2-b5c9-0b5db0e33367",
+      "role": "Architect",
+      "status": "completed",
+      "output": "architecture/architecture-plan.md"
+    },
+    {
+      "id": "019e3e23-db5b-73c2-b9e1-45e835dd2f8c",
+      "role": "Dev",
+      "status": "completed",
+      "output": "backend/"
+    },
+    {
+      "id": "019e3e23-fe85-74e2-b2e8-6cfe12bb052a",
+      "role": "Dev",
+      "status": "completed",
+      "output": "frontend/"
+    },
+    {
+      "id": "019e3e2a-4a29-7263-8951-cd959d7d29f8",
+      "role": "QA",
+      "status": "completed",
+      "output": "qa/qa-report.md"
+    },
+    {
+      "id": "019e3e32-f64e-7b32-bd89-2aa7e178a5cc",
+      "role": "Risk Reviewer",
+      "status": "completed",
+      "output": "review/recheck-report.md"
+    },
+    {
+      "id": "019e3e33-6af4-7d23-85c6-d63a046227d2",
+      "role": "Technical Writer",
+      "status": "completed",
+      "output": "docs/technical-summary.md"
+    }
+  ]
 }
